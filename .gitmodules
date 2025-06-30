@@ -1,0 +1,3 @@
+[submodule ".github"]
+	path = .github
+	url = https://gitlab.tce.sp.gov.br/mfoliveira/copilot-instructions-api.git
