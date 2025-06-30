@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: icp-brasil-authenticator-test
+  
+  datasource:
+    url: jdbc:postgresql://localhost:5432/icp_brasil_authenticator_test
+    username: test
+    password: test
+    driver-class-name: org.postgresql.Driver
+  
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.yaml
+
+server:
+  port: 0
+  ssl:
+    enabled: false
+
+logging:
+  level:
+    br.gov.sp.tce.icp_brasil_authenticator: DEBUG
+    org.springframework.security: DEBUG

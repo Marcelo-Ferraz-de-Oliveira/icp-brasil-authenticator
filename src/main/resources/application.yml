@@ -1,0 +1,68 @@
+spring:
+  application:
+    name: icp-brasil-authenticator
+  
+  # datasource:
+  #   url: jdbc:postgresql://localhost:5432/icp_brasil_authenticator
+  #   username: ${DB_USERNAME:postgres}
+  #   password: ${DB_PASSWORD:postgres}
+  #   driver-class-name: org.postgresql.Driver
+  
+  # jpa:
+  #   hibernate:
+  #     ddl-auto: validate
+  #   show-sql: false
+  #   properties:
+  #     hibernate:
+  #       format_sql: true
+  #       dialect: org.hibernate.dialect.PostgreSQLDialect
+  
+  # liquibase:
+  #   change-log: classpath:db/changelog/db.changelog-master.yaml
+  
+  # Comentar OAuth2 temporariamente para evitar conflitos
+  # security:
+  #   oauth2:
+  #     resourceserver:
+  #       jwt:
+  #         issuer-uri: ${JWT_ISSUER_URI:https://sso.desenv.tce.sp.gov.br/realms/TCESP}
+
+server:
+  port: 8443
+  servlet:
+    context-path: /
+  ssl:
+    enabled: true
+    key-store: classpath:keystore.p12
+    key-store-password: ${KEYSTORE_PASSWORD:changeit}
+    key-store-type: PKCS12
+    client-auth: need
+    trust-certs: any
+    enabled-protocols: TLSv1.2
+    ciphers: ECDHE-RSA-AES128-GCM-SHA256
+    trust-store: classpath:truststore.p12
+    trust-store-password: ${TRUSTSTORE_PASSWORD:changeit}
+    trust-store-type: PKCS12
+    # key-alias: ${KEYSTORE_ALIAS:tomcat}
+
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: prometheus,health,info
+  metrics:
+    distribution:
+      percentiles:
+        http.server.requests: 0.5,0.9,0.95,0.99
+      percentiles-histogram:
+        http.server.requests: true
+
+logging:
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+  level:
+    br.gov.sp.tce.icp_brasil_authenticator: INFO
+    org.springframework.security: DEBUG

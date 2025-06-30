@@ -31,3 +31,15 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Certificados e Keystores ###
+*.p12
+*.jks
+*.keystore
+*.truststore
+truststore.p12
+keystore.p12
+Accompactado/
+
+### Scripts de criação de certificados ###
+create-truststore.sh
