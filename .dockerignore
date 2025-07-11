@@ -1,0 +1,54 @@
+# Docker ignore file para ICP-Brasil Authenticator
+
+# Build artifacts
+target/
+!target/*.jar
+
+# IDE files
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Git
+.git
+.gitignore
+
+# Documentation
+README.md
+HELP.md
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+
+# Node modules (se houver frontend)
+node_modules/
+
+# Maven wrapper (será copiado separadamente)
+!.mvn/
+!mvnw
+!mvnw.cmd
+
+# Certificados sensíveis (já estão no .gitignore)
+*.p12
+*.jks
+*.keystore
+*.truststore
+
+# Scripts auxiliares
+create-truststore.sh
+
+# Arquivos de certificados das ACs (muito grandes)
+Accompactado/
+
+# HTML de teste (opcional, pode ser incluído se necessário)
+index.html
